@@ -1,0 +1,12 @@
+// client/src/components/Layout.js
+import React from "react";
+import Sidebar from "./Sidebar";
+
+export default function Layout({ children }) {
+  return (
+    <div className="app-shell">
+      <Sidebar />
+      <main className="app-content">{children}</main>
+    </div>
+  );
+}
