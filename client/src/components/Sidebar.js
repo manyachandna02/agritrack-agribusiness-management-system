@@ -22,12 +22,15 @@ export default function Sidebar() {
 
   links.push({ to: "/crops", label: "Crops" });
   links.push({ to: "/production", label: "Production" });
+<<<<<<< HEAD
   links.push({ to: "/sales", label: user.role === "FARM_STAFF" ? "Sales (view)" : "Sales" });
 
   if (user.role === "ADMIN" || user.role === "MANAGER") {
     links.push({ to: "/reports", label: "Reports" });
     links.push({ to: "/simulator", label: "What-If Simulator" });
   }
+=======
+>>>>>>> 51235edef0918591d089ddfb657255776aca0596
 
   if (user.role === "ADMIN") {
     links.push({ to: "/users", label: "Users" });

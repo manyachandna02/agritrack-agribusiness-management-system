@@ -8,8 +8,12 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1",
+<<<<<<< HEAD
     "react-scripts": "5.0.1",
     "recharts": "^2.12.7"
+=======
+    "react-scripts": "5.0.1"
+>>>>>>> 51235edef0918591d089ddfb657255776aca0596
   },
   "scripts": {
     "start": "react-scripts start",

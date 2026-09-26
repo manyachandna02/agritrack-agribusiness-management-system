@@ -19,12 +19,15 @@ import CropForm from "./pages/crops/CropForm";
 import ProductionList from "./pages/production/ProductionList";
 import ProductionForm from "./pages/production/ProductionForm";
 
+<<<<<<< HEAD
 import SalesList from "./pages/sales/SalesList";
 import SalesForm from "./pages/sales/SalesForm";
 
 import Reports from "./pages/reports/Reports";
 import Simulator from "./pages/simulator/Simulator";
 
+=======
+>>>>>>> 51235edef0918591d089ddfb657255776aca0596
 function AuthedLayout({ children }) {
   return (
     <ProtectedRoute>
@@ -159,6 +162,7 @@ export default function App() {
             }
           />
 
+<<<<<<< HEAD
           <Route
             path="/sales"
             element={
@@ -210,6 +214,8 @@ export default function App() {
             }
           />
 
+=======
+>>>>>>> 51235edef0918591d089ddfb657255776aca0596
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
