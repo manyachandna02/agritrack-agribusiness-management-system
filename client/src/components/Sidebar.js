@@ -10,6 +10,7 @@ import { useAuth } from "../context/AuthContext";
 
 export default function Sidebar() {
   const { user, logout } = useAuth();
+
   if (!user) return null;
 
   const links = [{ to: "/dashboard", label: "Dashboard" }];
@@ -22,16 +23,20 @@ export default function Sidebar() {
 
   links.push({ to: "/crops", label: "Crops" });
   links.push({ to: "/production", label: "Production" });
-<<<<<<< HEAD
-  links.push({ to: "/sales", label: user.role === "FARM_STAFF" ? "Sales (view)" : "Sales" });
 
+  // Week 3 — Sales
+  links.push({
+    to: "/sales",
+    label: user.role === "FARM_STAFF" ? "Sales (view)" : "Sales",
+  });
+
+  // Week 3 — Reports and What-If Simulator
   if (user.role === "ADMIN" || user.role === "MANAGER") {
     links.push({ to: "/reports", label: "Reports" });
     links.push({ to: "/simulator", label: "What-If Simulator" });
   }
-=======
->>>>>>> 51235edef0918591d089ddfb657255776aca0596
 
+  // Admin only
   if (user.role === "ADMIN") {
     links.push({ to: "/users", label: "Users" });
   }
@@ -39,21 +44,26 @@ export default function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-brand">AgriTrack</div>
+
       <nav>
         {links.map((link) => (
           <NavLink
             key={link.to}
             to={link.to}
-            className={({ isActive }) => "sidebar-link" + (isActive ? " active" : "")}
+            className={({ isActive }) =>
+              "sidebar-link" + (isActive ? " active" : "")
+            }
           >
             {link.label}
           </NavLink>
         ))}
       </nav>
+
       <div className="sidebar-footer">
         <div className="sidebar-user">
           {user.name} <span className="role-badge">{user.role}</span>
         </div>
+
         <button className="btn btn-secondary" onClick={logout}>
           Logout
         </button>

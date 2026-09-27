@@ -1,241 +1,508 @@
-# AgriTrack
 
-<<<<<<< HEAD
-AgriTrack is a MERN-stack farm management and decision-support system, built as a
-4-week technical internship project. As of Week 3, the application is
-**feature-complete**: Authentication/RBAC, Inventory, Crops, Production, Sales,
-Reports & Analytics, and the What-If Business Simulator are all implemented and
-integrated. Week 4 is deployment, production configuration, and documentation —
-not new features.
+# AgriTrack — Agribusiness Management & Decision Support System
+
+AgriTrack is a MERN-stack web application designed to support agribusiness management through centralized management of users, crops, inventory, production, sales, reports, and business decision-support simulations.
+
+The project is being developed as a **4-week technical internship project**.
+
+As of **Week 3**, the core application is feature-complete. Week 4 focuses on deployment, production configuration, user documentation, troubleshooting, monitoring, and maintenance.
+
+---
+
+## Project Status
+
+| Week | Status | Work Completed |
+|------|--------|----------------|
+| Week 1 | Completed | Project planning, requirements and system architecture |
+| Week 2 | Completed | Authentication, RBAC, Inventory, Crops, Production and frontend foundation |
+| Week 3 | Completed | Sales, Reports & Analytics, What-If Simulator, enhanced Dashboard and QA |
+| Week 4 | Planned | Deployment, documentation, monitoring and maintenance |
+
+---
 
 ## Features
 
-**Completed (Week 2 + Week 3):**
-- JWT authentication with bcrypt-hashed passwords
-- Role-based access control (ADMIN, MANAGER, FARM_STAFF) enforced on the backend
-- Inventory management with server-computed stock status (In Stock / Low Stock / Out of Stock)
-- Crop management
-- Production management, referencing Crop by MongoDB ObjectId
-- **Sales management**, with safe, atomic inventory consumption when a sale is linked to an inventory item
-- **Reports & Analytics**, computed from real MongoDB data (sales, production, inventory, crops, combined summary), with date-range filtering
-- **What-If Business Simulator** — five read-only hypothetical scenarios that never modify real data
-- React frontend covering every module: login, role-aware sidebar, protected routes, dashboard with charts
-- Centralized backend error handling with consistent JSON error responses
+### Authentication & Authorization
 
-**Planned (Week 4):**
-- Deployment and production configuration
-- User documentation, quick-start guide, troubleshooting guide
-- Monitoring / maintenance documentation
-- Automated test suite (the codebase is structured for this — see "Testing" below)
+- JWT-based authentication
+- Password hashing using bcrypt
+- Role-Based Access Control (RBAC)
+- Three user roles:
+  - ADMIN
+  - MANAGER
+  - FARM_STAFF
+- Protected API routes
+- Protected frontend routes
+- Role-aware navigation
+- Admin-only user management
 
-## Technology Stack
+### Inventory Management
 
-- **Backend:** Node.js, Express, MongoDB, Mongoose, JWT (`jsonwebtoken`), `bcryptjs`, `cors`, `dotenv`
-- **Frontend:** React 18, React Router v6, Axios, Recharts (charts on Dashboard/Reports/Simulator). Built with Create React App (`react-scripts`) — no Vite.
-- **Language:** JavaScript throughout (CommonJS backend, JSX frontend). No TypeScript, no microservices, no Docker/Kubernetes/Kafka/Redis/GraphQL.
-=======
-AgriTrack is a MERN-stack farm management system built as a 4-week technical
-internship project. It tracks inventory, crops, and production records behind
-a role-based authentication layer.
+- Create, view, update and delete inventory items
+- Quantity and minimum-stock threshold management
+- Server-computed inventory status:
+  - In Stock
+  - Low Stock
+  - Out of Stock
+- Prevention of invalid negative quantities
+- Inventory updates linked with sales
 
-This README documents the **Week 2 MVP**: Phases 1–6 (setup, auth/RBAC,
-inventory, crop + production, frontend integration, and validation/error
-handling).
+### Crop Management
 
-## Week 2 Implemented Features
+- Create, view, update and delete crops
+- Crop name and season management
+- Area and date information
+- Crop status tracking:
+  - Planned
+  - Growing
+  - Harvested
 
-- JWT authentication with bcrypt-hashed passwords
-- Role-based access control (ADMIN, MANAGER, FARM_STAFF) enforced on the backend
-- Inventory CRUD with server-computed stock status
-- Crop CRUD
-- Production CRUD, referencing Crop by MongoDB ObjectId
-- React frontend: login, role-aware sidebar, protected routes, basic dashboard
-- Centralized backend error handling with consistent JSON error responses
+### Production Management
 
-## Technology Stack
+- Create, view, update and delete production records
+- Production linked to Crop records through MongoDB ObjectId
+- Production quantity tracking
+- Production date
+- Quality classification
+- Farm/location information
 
-- **Backend:** Node.js, Express, MongoDB, Mongoose, JWT (`jsonwebtoken`), `bcryptjs`, `cors`, `dotenv`
-- **Frontend:** React 18, React Router v6, Axios (Create React App / `react-scripts` — no Vite)
-- **Language:** JavaScript (CommonJS on the backend, ES modules/JSX on the frontend). No TypeScript.
->>>>>>> 51235edef0918591d089ddfb657255776aca0596
+### Sales Management
 
-## Architecture
+- Create, view, update and delete sales
+- Customer and product information
+- Quantity and price tracking
+- Automatic total amount calculation
+- Optional link between a sale and an inventory item
+- Inventory quantity reduction when a sale is linked to inventory
+- Prevention of inventory from becoming negative
+- Inventory restoration when applicable during sale deletion or update
 
+### Reports & Analytics
+
+Reports are generated using real MongoDB data.
+
+Available reports include:
+
+- Combined business summary
+- Sales report
+- Production report
+- Inventory report
+- Crop report
+- Sales breakdown by date
+- Sales breakdown by product
+- Production breakdown by date
+- Production breakdown by crop
+- Low-stock inventory information
+- Out-of-stock inventory information
+- Crop status breakdown
+- Date-range filtering
+
+### What-If Business Simulator
+
+The What-If Simulator provides hypothetical business scenarios without modifying actual operational data.
+
+Available scenarios:
+
+1. Inventory Sale
+2. Price Change
+3. Demand Change
+4. Production Change
+5. Inventory Consumption
+
+The simulator provides projected values based on hypothetical inputs.
+
+The simulator is:
+
+- Read-only
+- Rule-based
+- Deterministic
+- Independent from actual transaction writes
+- Accessible to ADMIN and MANAGER roles
+
+### Dashboard
+
+The dashboard provides business-level information including:
+
+- Total crops
+- Total inventory items
+- Low-stock items
+- Production records
+- Production quantity
+- Sales information
+- Revenue information
+- Sales/revenue charts
+- Production charts
+- Inventory status charts
+- Crop status charts
+
+---
+
+# Technology Stack
+
+## Frontend
+
+- React 18
+- React Router v6
+- Axios
+- Recharts
+- Create React App
+- react-scripts
+- JavaScript
+- JSX
+
+## Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JSON Web Token (JWT)
+- bcryptjs
+- CORS
+- dotenv
+
+## Development Tools
+
+- Git
+- GitHub
+- Thunder Client
+- Visual Studio Code
+- MongoDB / MongoDB Atlas
+
+The project uses **Create React App and does not use Vite**.
+
+---
+
+# System Architecture
+
+AgriTrack follows a modular MERN-based client-server architecture.
+
+```text
+                 React Frontend
+                      |
+                    Axios
+                      |
+                      v
+              Express REST API
+                      |
+              Authentication /
+              Authorization
+                 Middleware
+                      |
+                      v
+                  Routes
+                      |
+                      v
+                Controllers
+                      |
+             +--------+--------+
+             |                 |
+             v                 v
+          Services           Models
+             |                 |
+             |              Mongoose
+             |                 |
+             +--------+--------+
+                      |
+                      v
+                   MongoDB
+````
+
+The frontend communicates with the backend through REST APIs.
+
+JWT tokens are used for authenticated requests.
+
+Backend middleware performs authentication and authorization before protected controllers are executed.
+
+The backend is responsible for enforcing permissions. Frontend role-based navigation is only a usability feature and is not considered the security boundary.
+
+---
+
+# User Roles and Permissions
+
+| Module / Action            | ADMIN | MANAGER | FARM_STAFF    |
+| -------------------------- | ----- | ------- | ------------- |
+| Login                      | Yes   | Yes     | Yes           |
+| Manage Users               | Yes   | No      | No            |
+| View Inventory             | Yes   | Yes     | Yes           |
+| Create Inventory           | Yes   | Yes     | No            |
+| Update Inventory           | Full  | Full    | Quantity only |
+| Delete Inventory           | Yes   | Yes     | No            |
+| View Crops                 | Yes   | Yes     | Yes           |
+| Create/Update/Delete Crops | Yes   | Yes     | No            |
+| View Production            | Yes   | Yes     | Yes           |
+| Create/Update Production   | Yes   | Yes     | Yes           |
+| Delete Production          | Yes   | Yes     | No            |
+| View Sales                 | Yes   | Yes     | Yes           |
+| Create/Update/Delete Sales | Yes   | Yes     | No            |
+| Reports & Analytics        | Yes   | Yes     | No            |
+| What-If Simulator          | Yes   | Yes     | No            |
+
+Authorization is enforced on backend routes using role-based middleware.
+
+---
+
+# Main Modules
+
+## 1. Authentication
+
+Relevant files:
+
+```text
+server/models/User.js
+server/controllers/authController.js
+server/routes/authRoutes.js
+server/middleware/auth.js
+server/middleware/authorize.js
 ```
-React (client/)
-  ↓ Axios (client/src/services/api.js — attaches JWT, centralizes error handling)
-Express REST API (server/server.js)
-  ↓
-Routes (server/routes/) → Middleware (auth, authorize, validateObjectId) → Controllers (server/controllers/)
-<<<<<<< HEAD
-  ↓                                                                              ↓
-Mongoose Models (server/models/)                          server/services/analyticsService.js
-  ↓                                                        (shared aggregation logic for
-MongoDB                                                     Dashboard + Reports; reads only)
+
+Responsibilities:
+
+* Login
+* Registration
+* JWT generation
+* Password verification
+* Current-user information
+* User management
+* Role-based authorization
+
+---
+
+## 2. Inventory
+
+Relevant files:
+
+```text
+server/models/Inventory.js
+server/controllers/inventoryController.js
+server/routes/inventoryRoutes.js
 ```
 
-`server/utils/calculations.js` holds pure, dependency-free functions (`calculateTotalAmount`,
-`calculateProjectedInventory`, `calculateProjectedRevenue`, `calculatePercentageChange`,
-`calculateProjectedConsumption`) shared by Sales (real transactions) and the Simulator
-(hypothetical projections) — this is what keeps the Simulator's math identical to the
-real business rules without the Simulator ever importing a model.
+Inventory status is calculated on the server based on quantity and minimum threshold.
 
-## User Roles and Permissions
+```text
+quantity = 0
+        → Out of Stock
 
-| Module / Action | ADMIN | MANAGER | FARM_STAFF |
-|---|---|---|---|
-| Login | Yes | Yes | Yes |
-| Manage Users | Yes | No | No |
-| View / Update Inventory | Yes (full) | Yes (full) | View + quantity-only update |
-| Create / Delete Inventory | Yes | Yes | No |
-| View Crops | Yes | Yes | Yes |
-| Create/Update/Delete Crops | Yes | Yes | No |
-| View / Create / Update Production | Yes | Yes | Yes |
-| Delete Production | Yes | Yes | No |
-| View Sales | Yes | Yes | Yes |
-| Create / Update / Delete Sales | Yes | Yes | No |
-| Reports & Analytics | Yes | Yes | No |
-| What-If Simulator | Yes | Yes | No |
+quantity <= minimumThreshold
+        → Low Stock
 
-Enforced by `server/middleware/authorize.js` on every route. The frontend sidebar only
-hides links a role can't use, for UX — it is never the security boundary.
-
-## Modules
-
-- **Authentication** — `server/models/User.js`, `controllers/authController.js`
-- **Inventory** — `models/Inventory.js`, `controllers/inventoryController.js`
-- **Crops** — `models/Crop.js`, `controllers/cropController.js`
-- **Production** — `models/Production.js`, `controllers/productionController.js` (references Crop)
-- **Sales** — `models/Sale.js`, `controllers/saleController.js` (references Crop and/or Inventory; see "Sales & Inventory Consistency" below)
-- **Reports & Analytics** — `controllers/reportController.js` + `services/analyticsService.js`
-- **What-If Simulator** — `controllers/simulatorController.js` (read-only; see "Simulator" below)
-- **Dashboard** — `controllers/dashboardController.js` (aggregate KPIs + chart data, reusing `analyticsService`)
-=======
-  ↓
-Mongoose Models (server/models/)
-  ↓
-MongoDB
+quantity > minimumThreshold
+        → In Stock
 ```
 
-No local arrays are used as the primary data store. Seed data (`server/seed/seedAdmin.js`)
-exists only to bootstrap the first admin account.
->>>>>>> 51235edef0918591d089ddfb657255776aca0596
+---
 
-## Folder Structure
+## 3. Crops
 
+Relevant files:
+
+```text
+server/models/Crop.js
+server/controllers/cropController.js
+server/routes/cropRoutes.js
 ```
+
+The module manages crop records, seasons, area, dates and crop status.
+
+---
+
+## 4. Production
+
+Relevant files:
+
+```text
+server/models/Production.js
+server/controllers/productionController.js
+server/routes/productionRoutes.js
+```
+
+Production records reference existing Crop documents using MongoDB ObjectId.
+
+---
+
+## 5. Sales
+
+Relevant files:
+
+```text
+server/models/Sale.js
+server/controllers/saleController.js
+server/routes/saleRoutes.js
+```
+
+When a sale is linked to an inventory item, the backend checks available stock before reducing inventory.
+
+Example:
+
+```text
+Current Inventory = 1000 kg
+Sale Quantity     = 500 kg
+Remaining Stock   = 500 kg
+```
+
+If the requested sale quantity is greater than available stock, the sale is rejected and inventory remains unchanged.
+
+---
+
+## 6. Reports & Analytics
+
+Relevant files:
+
+```text
+server/controllers/reportController.js
+server/services/analyticsService.js
+server/routes/reportRoutes.js
+```
+
+The analytics service provides shared data-processing logic for the Dashboard and Reports modules.
+
+Reports are generated from MongoDB data rather than hard-coded values.
+
+---
+
+## 7. What-If Business Simulator
+
+Relevant files:
+
+```text
+server/controllers/simulatorController.js
+server/routes/simulatorRoutes.js
+server/utils/calculations.js
+```
+
+The simulator uses hypothetical inputs to calculate projected outcomes.
+
+It does not create, update or delete operational records.
+
+The calculation functions are kept separately so that business calculations can be reused consistently.
+
+---
+
+## 8. Dashboard
+
+Relevant files:
+
+```text
+server/controllers/dashboardController.js
+server/routes/dashboardRoutes.js
+client/src/pages/Dashboard.js
+```
+
+The Dashboard combines key business statistics and visual analytics into a single interface.
+
+---
+
+# Folder Structure
+
+```text
 AgriTrack/
+│
 ├── .env.example
 ├── .gitignore
 ├── README.md
+│
 ├── server/
-│   ├── .env                  # not committed — copy from .env.example
 │   ├── server.js
-<<<<<<< HEAD
-│   ├── config/db.js
-=======
+│   │
 │   ├── config/
 │   │   └── db.js
->>>>>>> 51235edef0918591d089ddfb657255776aca0596
+│   │
 │   ├── controllers/
 │   │   ├── authController.js
 │   │   ├── inventoryController.js
 │   │   ├── cropController.js
 │   │   ├── productionController.js
-<<<<<<< HEAD
 │   │   ├── saleController.js
 │   │   ├── reportController.js
 │   │   ├── simulatorController.js
 │   │   └── dashboardController.js
+│   │
 │   ├── services/
 │   │   └── analyticsService.js
-=======
-│   │   └── dashboardController.js
->>>>>>> 51235edef0918591d089ddfb657255776aca0596
+│   │
 │   ├── middleware/
 │   │   ├── auth.js
 │   │   ├── authorize.js
 │   │   ├── validateObjectId.js
 │   │   └── errorHandler.js
+│   │
 │   ├── models/
-<<<<<<< HEAD
-│   │   ├── User.js / Inventory.js / Crop.js / Production.js / Sale.js
-│   ├── routes/
-│   │   ├── authRoutes.js / inventoryRoutes.js / cropRoutes.js / productionRoutes.js
-│   │   ├── saleRoutes.js / reportRoutes.js / simulatorRoutes.js / dashboardRoutes.js
-│   ├── seed/seedAdmin.js
-│   └── utils/
-│       ├── generateToken.js / asyncHandler.js / calculations.js
-=======
 │   │   ├── User.js
 │   │   ├── Inventory.js
 │   │   ├── Crop.js
-│   │   └── Production.js
+│   │   ├── Production.js
+│   │   └── Sale.js
+│   │
 │   ├── routes/
 │   │   ├── authRoutes.js
 │   │   ├── inventoryRoutes.js
 │   │   ├── cropRoutes.js
 │   │   ├── productionRoutes.js
+│   │   ├── saleRoutes.js
+│   │   ├── reportRoutes.js
+│   │   ├── simulatorRoutes.js
 │   │   └── dashboardRoutes.js
+│   │
 │   ├── seed/
 │   │   └── seedAdmin.js
+│   │
 │   └── utils/
 │       ├── generateToken.js
-│       └── asyncHandler.js
->>>>>>> 51235edef0918591d089ddfb657255776aca0596
+│       ├── asyncHandler.js
+│       └── calculations.js
+│
 └── client/
     ├── .env.example
-    ├── public/index.html
+    ├── public/
+    │   └── index.html
+    │
     └── src/
-<<<<<<< HEAD
-        ├── App.js / index.js / index.css
-        ├── services/api.js
-        ├── context/AuthContext.js
-        ├── components/ (Sidebar, Layout, ProtectedRoute)
-        └── pages/
-            ├── Login.js / Register.js / Dashboard.js / Users.js
-            ├── inventory/ / crops/ / production/ / sales/
-            ├── reports/Reports.js
-            └── simulator/Simulator.js
-```
-
-## Environment Variables
-=======
         ├── App.js
         ├── index.js
         ├── index.css
-        ├── services/api.js
-        ├── context/AuthContext.js
-        ├── components/ (Sidebar, Layout, ProtectedRoute)
-        └── pages/ (Login, Register, Dashboard, Users, inventory/, crops/, production/)
+        │
+        ├── services/
+        │   └── api.js
+        │
+        ├── context/
+        │   └── AuthContext.js
+        │
+        ├── components/
+        │   ├── Sidebar.js
+        │   ├── Layout.js
+        │   └── ProtectedRoute.js
+        │
+        └── pages/
+            ├── Login.js
+            ├── Register.js
+            ├── Dashboard.js
+            ├── Users.js
+            ├── inventory/
+            ├── crops/
+            ├── production/
+            ├── sales/
+            ├── reports/
+            │   └── Reports.js
+            └── simulator/
+                └── Simulator.js
 ```
 
-## Installation
+---
 
-### Backend
+# Environment Variables
 
-```bash
-cd server
-npm install
-cp ../.env.example .env
-# edit server/.env with real values (see Environment Setup below)
+## Backend
+
+Create:
+
+```text
+server/.env
 ```
 
-### Frontend
+Example:
 
-```bash
-cd client
-npm install
-cp .env.example .env
-# edit client/.env if your backend isn't on the default URL/port
-```
-
-## Environment Setup
->>>>>>> 51235edef0918591d089ddfb657255776aca0596
-
-`server/.env`:
-
-```
+```env
 PORT=5000
 MONGODB_URI=mongodb://127.0.0.1:27017/agritrack
 JWT_SECRET=replace-with-a-long-random-string
@@ -244,247 +511,435 @@ ADMIN_EMAIL=admin@agritrack.local
 ADMIN_PASSWORD=ChangeMe123
 ```
 
-`client/.env`:
+## Frontend
 
+Create:
+
+```text
+client/.env
 ```
+
+Example:
+
+```env
+REACT_APP_API_BASE_URL=http://localhost:5001/api
+```
+
+> Never commit real `.env` files, passwords, JWT secrets or database credentials to GitHub.
+
+---
+
+# Installation
+
+## 1. Clone the Repository
+
+```bash
+git clone https://github.com/manyachandna02/agritrack-agribusiness-management-system.git
+cd agritrack-agribusiness-management-system
+```
+
+---
+
+## 2. Install Backend Dependencies
+
+```bash
+cd server
+npm install
+```
+
+Configure:
+
+```text
+server/.env
+```
+
+with the required environment variables.
+
+---
+
+## 3. Install Frontend Dependencies
+
+Open another terminal:
+
+```bash
+cd client
+npm install
+```
+
+Configure:
+
+```text
+client/.env
+```
+
+with:
+
+```env
 REACT_APP_API_BASE_URL=http://localhost:5000/api
 ```
 
-<<<<<<< HEAD
-**Never commit real `.env` files.** `.gitignore` excludes `.env`, `.env.local`,
-`node_modules/`, `dist/`, and `build/`. No new environment variables were introduced
-in Week 3.
+---
 
-## Installation
+# Running the Application
+
+## Start Backend
+
+From the `server` directory:
 
 ```bash
-# Backend
-cd server
-npm install
-cp ../.env.example .env   # then fill in real values
-
-# Frontend
-cd client
-npm install                # now also installs recharts
-cp .env.example .env
+npm run dev
 ```
 
-## Running the Application
+or:
 
 ```bash
-# Backend
-cd server
-npm run dev          # or: npm start
-
-# Seed the first Admin (only needed once)
-npm run seed:admin
-
-# Frontend
-cd client
 npm start
-=======
-**Never commit real `.env` files.** `.gitignore` already excludes `.env`, `.env.local`,
-`node_modules/`, `dist/`, and `build/`.
-
-## How to Run
-
-### Backend
-
-```bash
-cd server
-npm run dev        # nodemon, auto-restarts on change
-# or
-npm start          # plain node
->>>>>>> 51235edef0918591d089ddfb657255776aca0596
 ```
 
-Health check: `GET http://localhost:5000/api/health`
+Backend runs on:
 
-<<<<<<< HEAD
-## API Overview
+```text
+http://localhost:5000
+```
 
-Week 2 endpoints (`/api/auth`, `/api/inventory`, `/api/crops`, `/api/production`,
-`/api/dashboard/stats`) are unchanged. Week 3 adds:
+Health check:
 
-| Method | Route | Access | Purpose |
-|---|---|---|---|
-| GET | `/api/sales` | Any authenticated | List sales |
-| GET | `/api/sales/:id` | Any authenticated | View one sale |
-| POST | `/api/sales` | ADMIN, MANAGER | Record a sale (decrements linked inventory atomically) |
-| PUT | `/api/sales/:id` | ADMIN, MANAGER | Update a sale (adjusts inventory delta) |
-| DELETE | `/api/sales/:id` | ADMIN, MANAGER | Delete a sale (restores linked inventory) |
-| GET | `/api/reports/summary?from&to` | ADMIN, MANAGER | Combined business summary |
-| GET | `/api/reports/sales?from&to` | ADMIN, MANAGER | Sales summary + by-product/by-date breakdown |
-| GET | `/api/reports/production?from&to` | ADMIN, MANAGER | Production summary + by-crop/by-date breakdown |
-| GET | `/api/reports/inventory` | ADMIN, MANAGER | Inventory summary, low/out-of-stock lists |
-| GET | `/api/reports/crops` | ADMIN, MANAGER | Crop status breakdown + production by crop |
-| POST | `/api/simulator/inventory-sale` | ADMIN, MANAGER | Scenario 1 (see below) |
-| POST | `/api/simulator/price-change` | ADMIN, MANAGER | Scenario 2 |
-| POST | `/api/simulator/demand-change` | ADMIN, MANAGER | Scenario 3 |
-| POST | `/api/simulator/production-change` | ADMIN, MANAGER | Scenario 4 |
-| POST | `/api/simulator/inventory-consumption` | ADMIN, MANAGER | Scenario 5 |
+```text
+http://localhost:5000/api/health
+```
 
-All error responses remain `{ "success": false, "message": "..." }` with the same
-HTTP status conventions as Week 2 (400 validation, 401 auth, 403 forbidden, 404 not
-found, 409 conflict, 500 server error). A report or simulator call with no matching
-data returns `200` with an empty result and an explanatory `message` — never a 500.
+---
 
-### Sales & Inventory Consistency
+## Create the First Admin
 
-A Sale may optionally reference an Inventory item. When it does, creating the Sale
-**atomically decrements** that item's quantity using a single conditional MongoDB
-update (`findOneAndUpdate` with a `quantity: { $gte: amount }` filter) — this
-MongoDB instance is a standalone server, not a replica set, so multi-document
-transactions aren't available, but a single-document conditional update is still
-atomic and guarantees inventory can never go negative, even under concurrent
-requests. If the Sale record itself then fails to save, the decrement is explicitly
-rolled back. Updating or deleting a sale reverses its inventory effect the same way.
-**Simulations never touch this path at all** — see below.
-
-### What-If Simulator
-
-The Simulator (`server/controllers/simulatorController.js`) computes five
-hypothetical scenarios — inventory sale, price change, demand change, production
-change, inventory consumption — using the same pure functions Sales uses
-(`server/utils/calculations.js`), so the math is identical to what a real
-transaction would produce. It is guaranteed read-only **structurally**: the
-controller file contains no write calls (`.create`, `.save`, `.updateOne`,
-`.findOneAndUpdate`, `.deleteOne`) on any model — the only database access is a
-`findById` used to optionally pre-fill "current" values from a real Inventory item.
-Every response returns Current Value / Hypothetical Change / Projected Value /
-Difference / Warning, matching the frontend's results card. Access is restricted to
-ADMIN and MANAGER.
-
-### How Reports Calculate Real Data
-
-Every number in `/api/reports/*` and the dashboard's chart data comes from
-`server/services/analyticsService.js`, which queries MongoDB directly via
-Mongoose `find`/`aggregate`/`countDocuments` — there are no hard-coded figures.
-Dashboard and Reports both call the same service functions, so a number shown on
-the Dashboard and the equivalent figure in Reports can never disagree due to
-duplicated logic.
-
-## Testing
-
-The codebase is structured for testability, per the internship's Week 3 plan:
-
-- Pure, deterministic calculation functions live in `server/utils/calculations.js`,
-  independent of Express or Mongoose — these can be unit tested with plain input/output
-  assertions (e.g. `calculateProjectedInventory(1200, 500) === 700`).
-- Routes / controllers / models / middleware / services are all in separate files
-  with a single responsibility each.
-- No automated test suite has been added yet — Week 3 focused on features. Adding
-  Jest (or similar) against the utilities and controllers above is Week 3/4 follow-up
-  work, not blocked by anything in this structure.
-
-## Future Improvements (Week 4+)
-
-- Deployment (containerization or PaaS), production environment configuration
-- User documentation and a quick-start guide
-- Troubleshooting guide, monitoring/maintenance documentation
-- Automated backend test suite and frontend component tests
-- True multi-document transactions if/when MongoDB runs as a replica set
-=======
-### Seed the first Admin account
-
-The register endpoint requires an ADMIN token, so the very first admin
-account must be created via the seed script:
+Run:
 
 ```bash
 cd server
 npm run seed:admin
 ```
 
-Uses `ADMIN_EMAIL` / `ADMIN_PASSWORD` from `server/.env`. Safe to re-run —
-it does nothing if that email already exists.
+The seed script uses:
 
-### Frontend
+```text
+ADMIN_EMAIL
+ADMIN_PASSWORD
+```
+
+from the backend `.env` file.
+
+---
+
+## Start Frontend
+
+From the `client` directory:
 
 ```bash
-cd client
 npm start
 ```
 
-Opens at `http://localhost:3000` (CRA default), talking to the API at
-`REACT_APP_API_BASE_URL`.
+The React application normally opens at:
 
-## API Summary
+```text
+http://localhost:3000
+```
 
-### Authentication (`/api/auth`)
+---
 
-| Method | Route | Access | Description |
-|---|---|---|---|
-| POST | `/api/auth/login` | Public | Returns a JWT + user profile |
-| POST | `/api/auth/register` | ADMIN | Creates a user with a given role |
-| GET | `/api/auth/me` | Any authenticated user | Current user's profile |
-| GET | `/api/auth/users` | ADMIN | List all users |
+# API Overview
 
-### User Roles and Permissions
+## Authentication
 
-| Role | Users | Inventory | Crops | Production |
-|---|---|---|---|---|
-| ADMIN | full | full | full | full |
-| MANAGER | none | full | full | full |
-| FARM_STAFF | none | view + quantity updates only | view only | view + create/update (no delete) |
+```text
+POST /api/auth/login
+POST /api/auth/register
+GET  /api/auth/me
+GET  /api/auth/users
+```
 
-Enforced by `server/middleware/authorize.js` on every route — the frontend
-sidebar only hides links for UX; it is not the security boundary.
+---
 
-### Inventory (`/api/inventory`)
+## Inventory
 
-`GET /`, `GET /:id`, `POST /` (ADMIN/MANAGER), `PUT /:id` (ADMIN/MANAGER full;
-FARM_STAFF quantity-only), `DELETE /:id` (ADMIN/MANAGER).
+```text
+GET    /api/inventory
+GET    /api/inventory/:id
+POST   /api/inventory
+PUT    /api/inventory/:id
+DELETE /api/inventory/:id
+```
 
-`status` (`In Stock` / `Low Stock` / `Out of Stock`) is always computed
-server-side from `quantity` vs `minimumThreshold` — client-submitted status
-values are ignored.
+---
 
-### Crops (`/api/crops`)
+## Crops
 
-`GET /`, `GET /:id`, `POST /` (ADMIN/MANAGER), `PUT /:id` (ADMIN/MANAGER),
-`DELETE /:id` (ADMIN/MANAGER). Everyone authenticated can view.
+```text
+GET    /api/crops
+GET    /api/crops/:id
+POST   /api/crops
+PUT    /api/crops/:id
+DELETE /api/crops/:id
+```
 
-### Production (`/api/production`)
+---
 
-`GET /`, `GET /:id`, `POST /` (ADMIN/MANAGER/FARM_STAFF), `PUT /:id`
-(ADMIN/MANAGER/FARM_STAFF), `DELETE /:id` (ADMIN/MANAGER). The `crop` field
-must be a valid ObjectId referencing an existing Crop document — this is
-checked before the record is saved.
+## Production
 
-### Dashboard (`/api/dashboard`)
+```text
+GET    /api/production
+GET    /api/production/:id
+POST   /api/production
+PUT    /api/production/:id
+DELETE /api/production/:id
+```
 
-`GET /stats` — returns `{ totalCrops, totalInventoryItems, lowStockItems, totalProductionRecords }`,
-computed with `countDocuments()` against MongoDB.
+---
 
-### Error Response Shape
+## Sales
 
-Every error response follows:
+```text
+GET    /api/sales
+GET    /api/sales/:id
+POST   /api/sales
+PUT    /api/sales/:id
+DELETE /api/sales/:id
+```
+
+---
+
+## Reports
+
+```text
+GET /api/reports/summary?from&to
+GET /api/reports/sales?from&to
+GET /api/reports/production?from&to
+GET /api/reports/inventory
+GET /api/reports/crops
+```
+
+---
+
+## Simulator
+
+```text
+POST /api/simulator/inventory-sale
+POST /api/simulator/price-change
+POST /api/simulator/demand-change
+POST /api/simulator/production-change
+POST /api/simulator/inventory-consumption
+```
+
+---
+
+# Error Handling
+
+The backend uses a consistent error-response format:
 
 ```json
-{ "success": false, "message": "..." }
+{
+  "success": false,
+  "message": "Error description"
+}
 ```
 
-| Status | Meaning |
-|---|---|
-| 400 | Validation error / bad request / invalid ObjectId |
-| 401 | Missing, invalid, or expired JWT; wrong credentials |
-| 403 | Authenticated but not permitted for this action |
-| 404 | Resource or route not found |
-| 409 | Duplicate (e.g. email already registered) |
-| 500 | Unexpected server error |
+Common HTTP status codes:
 
-## Current Week 2 Scope
+| Status | Meaning                     |
+| ------ | --------------------------- |
+| 200    | Successful request          |
+| 201    | Resource created            |
+| 400    | Validation or bad request   |
+| 401    | Authentication failure      |
+| 403    | Insufficient permissions    |
+| 404    | Resource or route not found |
+| 409    | Conflict                    |
+| 500    | Internal server error       |
 
-Implemented: auth/JWT/RBAC, inventory, crops, production, a basic dashboard,
-and centralized validation/error handling, wired to a React frontend.
+---
 
-**Not implemented yet** (by design — see the code comments marked
-"Coming in Week 3"): Sales, Reports & Analytics, the What-If Simulator,
-production forecasting, automated testing, and deployment.
+# Sales and Inventory Consistency
 
-## Future Development
+When a sale is associated with an inventory item, the backend verifies that sufficient stock exists before reducing inventory.
 
-**Week 3:** Sales module, Reports & Analytics, What-If Simulator, testing and QA.
+Example:
 
-**Week 4:** Deployment, user documentation, monitoring, maintenance.
->>>>>>> 51235edef0918591d089ddfb657255776aca0596
+```text
+Available inventory = 500 kg
+Requested sale      = 600 kg
+```
+
+The request is rejected because the sale would make inventory negative.
+
+The system therefore prevents:
+
+```text
+Inventory < 0
+```
+
+For a valid sale:
+
+```text
+Available inventory = 1000 kg
+Sale quantity       = 500 kg
+Remaining inventory = 500 kg
+```
+
+Deleting a linked sale restores the corresponding inventory quantity.
+
+---
+
+# What-If Simulator
+
+The simulator allows users to evaluate hypothetical business situations without changing actual records.
+
+Example:
+
+```text
+Current Inventory = 500 kg
+Hypothetical Sale = 500 kg
+Price             = ₹42/kg
+
+Projected Inventory = 0 kg
+Projected Revenue   = ₹21,000
+```
+
+The example is hypothetical and does not create an actual sale.
+
+The simulator does not write to operational MongoDB collections.
+
+---
+
+# Reports and Analytics
+
+Reports use data stored in MongoDB.
+
+The Reports module provides:
+
+* Summary information
+* Sales analytics
+* Production analytics
+* Inventory analytics
+* Crop analytics
+* Date-based filtering
+* Product-based sales breakdown
+* Crop-based production breakdown
+* Low-stock information
+* Out-of-stock information
+
+The Dashboard and Reports use backend analytics logic to calculate business statistics.
+
+---
+
+# Testing and Quality Assurance
+
+Week 3 included functional and integration-oriented QA across the implemented modules.
+
+Testing covered:
+
+* Authentication
+* Authorization
+* Inventory
+* Crops
+* Production
+* Sales
+* Reports
+* Simulator
+* Dashboard
+* Integration scenarios
+* Negative and boundary cases
+* Regression checks
+
+Examples of validation scenarios include:
+
+```text
+Wrong login credentials
+Missing authentication token
+Unauthorized role access
+Negative inventory quantity
+Zero quantity
+Low-stock threshold
+Overselling inventory
+Invalid sale values
+Empty report date range
+Invalid simulator input
+```
+
+The application is structured so that automated tests can be added in future development.
+
+---
+
+# GitHub Repository
+
+Repository:
+
+[https://github.com/manyachandna02/agritrack-agribusiness-management-system.git](https://github.com/manyachandna02/agritrack-agribusiness-management-system.git)
+
+---
+
+# Week 4 Planned Work
+
+The final internship phase focuses on deployment and documentation rather than introducing major new application modules.
+
+Planned activities:
+
+1. Production database configuration
+2. Backend deployment
+3. Frontend deployment
+4. Production environment variables
+5. Frontend-backend integration verification
+6. Production smoke testing
+7. User manual
+8. Quick-start guide
+9. Troubleshooting guide
+10. Monitoring and maintenance documentation
+11. Final GitHub verification
+
+---
+
+# Future Improvements
+
+Possible future enhancements include:
+
+* Automated backend testing
+* Frontend component testing
+* Advanced analytics
+* Additional business simulations
+* Improved production monitoring
+* Production security hardening
+* MongoDB replica-set transactions for multi-document transactional workflows
+* More detailed reporting and visualization
+
+---
+
+# Project Development Timeline
+
+```text
+Week 1
+Project Planning & System Architecture
+        |
+        v
+Week 2
+Core Module Development
+Authentication + RBAC + Inventory + Crops + Production
+        |
+        v
+Week 3
+Feature Expansion & QA
+Sales + Reports + Simulator + Dashboard + Testing
+        |
+        v
+Week 4
+Deployment & Documentation
+Production Setup + User Guide + Monitoring
+```
+
+---
+
+# Conclusion
+
+AgriTrack provides a centralized web-based platform for managing key agribusiness operations. The Week 3 implementation integrates authentication, role-based authorization, inventory, crops, production, sales, reporting, analytics, dashboard visualization and a read-only What-If Business Simulator into a single MERN application.
+
+The project is now ready to proceed to the Week 4 deployment and documentation phase.
+
+````
+

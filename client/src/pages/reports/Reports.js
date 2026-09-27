@@ -112,44 +112,72 @@
     );
   }
 
-  function SummaryReport({ data }) {
-    return (
-      <div className="stat-grid">
-        <div className="stat-card">
-          <div className="stat-value">{data.sales.totalTransactions}</div>
-          <div className="stat-label">Sales Transactions</div>
+ function SummaryReport({ data }) {
+  const sales = data?.sales || {};
+  const production = data?.production || {};
+  const inventory = data?.inventory || {};
+  const crops = data?.crops || {};
+
+  return (
+    <div className="stat-grid">
+      <div className="stat-card">
+        <div className="stat-value">
+          {sales.totalTransactions ?? 0}
         </div>
-        <div className="stat-card">
-          <div className="stat-value">{data.sales.totalRevenue}</div>
-          <div className="stat-label">Total Revenue</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-value">{data.sales.averageSaleValue}</div>
-          <div className="stat-label">Average Sale Value</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-value">{data.production.totalProduction}</div>
-          <div className="stat-label">Total Production</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-value">{data.inventory.totalItems}</div>
-          <div className="stat-label">Inventory Items</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-value">{data.inventory.lowStockCount}</div>
-          <div className="stat-label">Low Stock</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-value">{data.inventory.outOfStockCount}</div>
-          <div className="stat-label">Out of Stock</div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-value">{data.crops.totalCrops}</div>
-          <div className="stat-label">Total Crops</div>
-        </div>
+        <div className="stat-label">Sales Transactions</div>
       </div>
-    );
-  }
+
+      <div className="stat-card">
+        <div className="stat-value">
+          {sales.totalRevenue ?? 0}
+        </div>
+        <div className="stat-label">Total Revenue</div>
+      </div>
+
+      <div className="stat-card">
+        <div className="stat-value">
+          {sales.averageSaleValue ?? 0}
+        </div>
+        <div className="stat-label">Average Sale Value</div>
+      </div>
+
+      <div className="stat-card">
+        <div className="stat-value">
+          {production.totalProduction ?? 0}
+        </div>
+        <div className="stat-label">Total Production</div>
+      </div>
+
+      <div className="stat-card">
+        <div className="stat-value">
+          {inventory.totalItems ?? 0}
+        </div>
+        <div className="stat-label">Inventory Items</div>
+      </div>
+
+      <div className="stat-card">
+        <div className="stat-value">
+          {inventory.lowStockCount ?? 0}
+        </div>
+        <div className="stat-label">Low Stock</div>
+      </div>
+
+      <div className="stat-card">
+        <div className="stat-value">
+          {inventory.outOfStockCount ?? 0}
+        </div>
+        <div className="stat-label">Out of Stock</div>
+      </div>
+
+      <div className="stat-card">
+        <div className="stat-value">
+          {crops.totalCrops ?? 0}
+        </div>
+        <div className="stat-label">Total Crops</div>
+      </div>
+    </div>
+  );
+}
 
   function SalesReport({ data }) {
     const byDate = Array.isArray(data.byDate) ? data.byDate : [];

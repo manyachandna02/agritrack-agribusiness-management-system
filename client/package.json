@@ -2,18 +2,14 @@
   "name": "agritrack-client",
   "version": "1.0.0",
   "private": true,
-  "description": "AgriTrack frontend — Week 2 MVP (React, react-router-dom, axios). Built with react-scripts, not Vite.",
+  "description": "AgriTrack frontend — Week 3 Feature Complete (React, react-router-dom, axios, recharts). Built with react-scripts, not Vite.",
   "dependencies": {
     "axios": "^1.7.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1",
-<<<<<<< HEAD
     "react-scripts": "5.0.1",
     "recharts": "^2.12.7"
-=======
-    "react-scripts": "5.0.1"
->>>>>>> 51235edef0918591d089ddfb657255776aca0596
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,7 +21,15 @@
     "extends": ["react-app"]
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
-    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

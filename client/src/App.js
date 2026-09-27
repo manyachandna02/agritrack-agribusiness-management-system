@@ -19,15 +19,12 @@ import CropForm from "./pages/crops/CropForm";
 import ProductionList from "./pages/production/ProductionList";
 import ProductionForm from "./pages/production/ProductionForm";
 
-<<<<<<< HEAD
 import SalesList from "./pages/sales/SalesList";
 import SalesForm from "./pages/sales/SalesForm";
 
 import Reports from "./pages/reports/Reports";
 import Simulator from "./pages/simulator/Simulator";
 
-=======
->>>>>>> 51235edef0918591d089ddfb657255776aca0596
 function AuthedLayout({ children }) {
   return (
     <ProtectedRoute>
@@ -38,8 +35,13 @@ function AuthedLayout({ children }) {
 
 function LoginRoute() {
   const { isAuthenticated, loading } = useAuth();
+
   if (loading) return <div className="page-loading">Loading...</div>;
-  if (isAuthenticated) return <Navigate to="/dashboard" replace />;
+
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
   return <Login />;
 }
 
@@ -48,8 +50,10 @@ export default function App() {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
+          {/* Login */}
           <Route path="/login" element={<LoginRoute />} />
 
+          {/* Admin Registration */}
           <Route
             path="/register"
             element={
@@ -61,6 +65,7 @@ export default function App() {
             }
           />
 
+          {/* Admin Users */}
           <Route
             path="/users"
             element={
@@ -72,6 +77,7 @@ export default function App() {
             }
           />
 
+          {/* Dashboard */}
           <Route
             path="/dashboard"
             element={
@@ -81,6 +87,7 @@ export default function App() {
             }
           />
 
+          {/* Inventory */}
           <Route
             path="/inventory"
             element={
@@ -89,6 +96,7 @@ export default function App() {
               </AuthedLayout>
             }
           />
+
           <Route
             path="/inventory/add"
             element={
@@ -99,6 +107,7 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/inventory/edit/:id"
             element={
@@ -108,6 +117,7 @@ export default function App() {
             }
           />
 
+          {/* Crops */}
           <Route
             path="/crops"
             element={
@@ -116,6 +126,7 @@ export default function App() {
               </AuthedLayout>
             }
           />
+
           <Route
             path="/crops/add"
             element={
@@ -126,6 +137,7 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/crops/edit/:id"
             element={
@@ -137,6 +149,7 @@ export default function App() {
             }
           />
 
+          {/* Production */}
           <Route
             path="/production"
             element={
@@ -145,6 +158,7 @@ export default function App() {
               </AuthedLayout>
             }
           />
+
           <Route
             path="/production/add"
             element={
@@ -153,6 +167,7 @@ export default function App() {
               </AuthedLayout>
             }
           />
+
           <Route
             path="/production/edit/:id"
             element={
@@ -162,7 +177,7 @@ export default function App() {
             }
           />
 
-<<<<<<< HEAD
+          {/* Sales - Week 3 */}
           <Route
             path="/sales"
             element={
@@ -171,6 +186,7 @@ export default function App() {
               </AuthedLayout>
             }
           />
+
           <Route
             path="/sales/add"
             element={
@@ -181,6 +197,7 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/sales/edit/:id"
             element={
@@ -192,6 +209,7 @@ export default function App() {
             }
           />
 
+          {/* Reports - Week 3 */}
           <Route
             path="/reports"
             element={
@@ -203,6 +221,7 @@ export default function App() {
             }
           />
 
+          {/* What-If Simulator - Week 3 */}
           <Route
             path="/simulator"
             element={
@@ -214,10 +233,16 @@ export default function App() {
             }
           />
 
-=======
->>>>>>> 51235edef0918591d089ddfb657255776aca0596
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          {/* Default Routes */}
+          <Route
+            path="/"
+            element={<Navigate to="/dashboard" replace />}
+          />
+
+          <Route
+            path="*"
+            element={<Navigate to="/dashboard" replace />}
+          />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
